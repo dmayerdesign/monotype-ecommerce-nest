@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "develop": "ng serve --proxy-config=\"proxy-config.json\" & npm run watch:server",
     "dev": "npm run develop",
+    "develop": "npm run watch:ui & npm run watch:server",
     "build:ui:development": "ng build",
     "build:ui:production": "ng build --prod && ng run mte-browser-app:server:production",
     "build:server:development": "npm run build:server:production",
     "build:server:production": "webpack --config webpack.server.config.js --progress --colors",
     "build:production": "npm run build:ui:production && npm run build:server:production",
     "watch:server": "npm run build:server:development && (webpack --config webpack.server.config.js --progress --colors --watch & node ./node_modules/nodemon/bin/nodemon --watch dist/ssr --watch src/server dist/server.js)",
+    "watch:ui": "ng serve --proxy-config=\"proxy-config.json\"",
     "start": "node dist/server",
     "lint": "ng lint mte-browser-app",
     "ng": "ng"

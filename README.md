@@ -1,35 +1,20 @@
-# Nest + Angular Universal Starter
+# Angular + Nest
+A full-stack application scaffold written in TypeScript and using TypeScript-enabled enterprise patterns thanks to [Angular](https://github.com/angular/angular) and [Nest](https://github.com/nestjs/nest).
+Began as a fork of the fantastic [universal-nest](https://github.com/kamilmysliwiec/universal-nest).
 
-A minimal [**Nest**](https://github.com/nestjs/nest) and Angular starter for Universal using the 
-[Angular CLI](https://github.com/angular/angular-cli). If you're looking for the Angular Universal repo go to 
-[angular/universal](https://github.com/angular/universal).
+## Installation
+`npm i`
 
-## Getting Started
+## Development (Client-side only rendering)
+`npm run dev` - Runs `ng serve` (for the UI) and `webpack` (for the server) concurrently.
+To run them separately, run `npm run watch:ui` and `npm run watch:server`.
 
-This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
+## Production (also for testing SSR/Pre-rendering locally)
+`npm run build:production`
 
-We're utilizing packages from the [Angular Universal @nguniversal](https://github.com/angular/universal) repo,
-such as [ng-module-map-ngfactory-loader](https://github.com/angular/universal/modules/module-map-ngfactory-loader)
-to enable Lazy Loading.
-
----
-
-**Server-Side Rendering(ssr)**
-* Happens at runtime
-* Uses `ngExpressEngine` to render your application on the fly at the requested url.
-
----
-
-### Installation
-* `npm i`
-
-### Development (Client-side only rendering)
-* `npm start` which will run `ng serve`.
-
-### Production (also for testing SSR/Pre-rendering locally)
-*`npm run build:ssr && npm run serve:ssr`
-  - Compiles your application and spins up a Nest server to serve
-your Universal application on `http://localhost:4000`.
+## Notes
+In development (`npm run dev` or `npm run develop`), the Angular browser app is served via the cli (`ng serve`) on port 4200, and requests to `/api/*` are proxied to port 4000, on which the server is listening.
+In production, the Nest server serves the app, to avoid having to deal with cross-origin resource sharing.
 
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
