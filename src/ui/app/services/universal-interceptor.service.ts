@@ -5,15 +5,14 @@ import { Inject, Injectable, Optional } from '@angular/core'
 export class UniversalInterceptorService implements HttpInterceptor {
 
   constructor(
-    @Optional() @Inject('serverUrl') protected serverUrl: string
+    @Optional()
+    @Inject('serverUrl')
+    protected serverUrl: string
   ) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler) {
-    console.log(`intercepting the url ${req.url}`)
-    const serverReq = !this.serverUrl ? req : req.clone({
-      url: `${this.serverUrl}${req.url}`
-    })
+    // Do some interceptor stuff here.
 
-    return next.handle(serverReq)
+    return next.handle(req)
   }
 }

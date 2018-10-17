@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { isPlatformBrowser } from '@angular/common'
+import { Component, Inject, PLATFORM_ID } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core'
   <div id="container">
     <h1>NgAtlanta 2018 - Universal Workshop</h1>
     <h3>(with Mark Pieszak)</h3>
+    <h4 *ngIf="!isBrowser">server</h4>
+    <h4 *ngIf="isBrowser">browser</h4>
 
     <div id="navigation">
       <a routerLink="/">Home</a>
@@ -23,5 +26,9 @@ import { Component } from '@angular/core'
   `]
 })
 export class AppComponent {
+  public isBrowser: boolean = isPlatformBrowser(this.platformId)
 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 }

@@ -8,7 +8,7 @@ import { SpeakersService } from './speakers-list/speakers.service'
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: SpeakersListComponent, pathMatch: 'full'},
+      { path: '', component: SpeakersListComponent },
     ]),
   ],
   providers: [
