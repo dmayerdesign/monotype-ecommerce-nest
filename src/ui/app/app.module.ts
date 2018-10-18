@@ -1,13 +1,12 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
 import { TransferHttpCacheModule } from '@nguniversal/common'
-import { WINDOW } from '../../../belongs-in-common/injection-tokens'
+import { WINDOW } from '../../common/injection-tokens'
 import { AppComponent } from './app.component'
 import { appRoutes } from './app.routes'
 import { HomeComponent } from './components/home/home.component'
-import { UniversalInterceptorService } from './services/universal-interceptor.service'
 
 // For AoT compilation:
 export function getWindow(): Window {
@@ -33,11 +32,6 @@ export function getWindow(): Window {
       provide: WINDOW,
       useFactory: getWindow
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useClass: UniversalInterceptorService
-    }
   ],
   bootstrap: [AppComponent]
 })
