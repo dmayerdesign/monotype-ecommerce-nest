@@ -1,11 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { takeWhile } from 'rxjs/operators'
-
-import { AppConfig } from '@mte/app-config'
 import { HeartbeatComponent } from '@mte/common/lib/heartbeat/heartbeat.component'
 import { Heartbeat } from '@mte/common/lib/heartbeat/heartbeat.decorator'
-import { Toast } from '../../../../../models/ui/toast'
+import { Toast } from '@mte/common/models/ui/toast'
+import { Observable } from 'rxjs'
+import { takeWhile } from 'rxjs/operators'
 import { timeout } from '../../utils/timeout'
 
 @Component({
@@ -38,7 +36,6 @@ export class MteToastComponent extends HeartbeatComponent implements OnInit, OnD
     public toast: Toast
     public isShowing = false
     public isFadedIn = false
-    public _config = AppConfig
 
     public subscriptions = {
         fadeInDelay: undefined,

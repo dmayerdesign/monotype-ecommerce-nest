@@ -1,6 +1,5 @@
 export * from './http-request.interceptor'
 export * from './http-response.interceptor'
-export * from './http.injection-tokens'
 export * from './http.models'
 export * from './http.service'
 export * from './rest.service'

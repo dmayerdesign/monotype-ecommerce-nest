@@ -6,12 +6,11 @@ import {
     HttpRequest,
 } from '@angular/common/http'
 import { Inject, Injectable } from '@angular/core'
+import { HTTP_SETTINGS } from '@mte/common/constants/angular/injection-tokens'
+import { HttpStatus } from '@mte/common/constants/http-status'
 import { of, throwError, Observable } from 'rxjs'
 import { catchError, switchMap } from 'rxjs/operators'
-
-import { HttpStatus } from '../../../constants'
-import { HttpInjectionTokens } from './http.injection-tokens'
-import { IHttpSettings, SimpleError } from './http.models'
+import { HttpSettings, SimpleError } from './http.models'
 import { MteHttpService } from './http.service'
 
 @Injectable()
@@ -19,7 +18,7 @@ export class MteHttpResponseInterceptor implements HttpInterceptor {
 
     constructor(
         private mteHttpService: MteHttpService,
-        @Inject(HttpInjectionTokens.HttpSettings) private httpSettings: typeof IHttpSettings,
+        @Inject(HTTP_SETTINGS) private httpSettings: HttpSettings,
     ) {}
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -35,8 +34,8 @@ export class MteHttpResponseInterceptor implements HttpInterceptor {
 
         return of(request)
             .pipe(
-                switchMap<HttpRequest<any>, HttpErrorResponse>((req) => next.handle(req)),
-                catchError((errorResponse) => {
+                switchMap((req) => next.handle(req)),
+                catchError((errorResponse: HttpErrorResponse) => {
                     // console.log('[MteHttpResponseInterceptor#intercept] Error response', errorResponse)
                     const error = new SimpleError(errorResponse)
 
@@ -54,6 +53,6 @@ export class MteHttpResponseInterceptor implements HttpInterceptor {
 
                     return throwError(error)
                 })
-            ) as any
+            )
     }
 }

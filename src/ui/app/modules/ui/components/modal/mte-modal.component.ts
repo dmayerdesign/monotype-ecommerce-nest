@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core'
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms'
-import { AppConfig } from '@mte/app-config'
+import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { Copy } from '@mte/common/constants/copy'
+import { ModalType } from '@mte/common/constants/enums/modal-type'
+import { ModalData } from '@mte/common/models/ui/modal-data'
 import { Observable, Subscription } from 'rxjs'
-import { Copy } from '../../../../../constants'
-import { ModalType } from '../../../../../constants/enums/modal-type'
-import { ModalData } from '../../../../../models/ui/modal-data'
+import { environment } from '../../../../../environments/environment'
 import { WindowRefService } from '../../services/window-ref.service'
 import { platform } from '../../utils/platform'
 import { timeout } from '../../utils/timeout'
@@ -35,7 +35,7 @@ import { timeout } from '../../utils/timeout'
                             *ngIf="data.type !== 'banner'">
                         <h2 class="modal-title">{{ data.title }}</h2>
                         <button (click)="cancel()" class="close">
-                            <img alt="close modal" [src]="appConfig.client_url + '/images/x-dark.svg'">
+                            <img alt="close modal" [src]="environment.client_url + '/images/x-dark.svg'">
                         </button>
                     </header>
 
@@ -83,7 +83,7 @@ export class MteModalComponent implements OnInit, OnDestroy {
     public defaultCancelText = Copy.Actions.cancel
     public isShowing = false
     public isFadedIn = false
-    public appConfig = AppConfig
+    public environment = environment
     public modalType = ModalType
     public formGroup: FormGroup
     public scrollYWhenOpened = 0

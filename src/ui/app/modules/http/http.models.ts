@@ -1,18 +1,18 @@
 import { HttpErrorResponse, HttpEvent } from '@angular/common/http'
-import { HttpStatus } from '../../../constants/http-status'
+import { HttpStatus } from '@mte/common/constants/http-status'
 
 export class SimpleError {
     public message: string
     public status: HttpStatus
 
-    constructor(errorResponse?: HttpErrorResponse & HttpEvent<any>) {
+    constructor(errorResponse?: HttpErrorResponse | HttpEvent<any>) {
         if (errorResponse) {
-            this.message = errorResponse.error ? errorResponse.error.message : null
-            this.status = errorResponse.status
+            this.message = errorResponse instanceof HttpErrorResponse ? errorResponse.error.message : null
+            this.status = (errorResponse as HttpErrorResponse).status
         }
     }
 }
 
-export abstract class IHttpSettings {
-    public static httpFlashErrorBlacklist: { endpoint: string, method: string }[]
+export abstract class HttpSettings {
+    public httpFlashErrorBlacklist: { endpoint: string, method: string }[]
 }

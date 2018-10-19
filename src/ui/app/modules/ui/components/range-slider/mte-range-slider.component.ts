@@ -1,11 +1,11 @@
 import { forwardRef, AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { RangeLimit } from '@mte/common/constants/enums/range-limit'
+import { HeartbeatComponent } from '@mte/common/lib/heartbeat/heartbeat.component'
+import { Heartbeat } from '@mte/common/lib/heartbeat/heartbeat.decorator'
 import { cloneDeep } from 'lodash'
 import { fromEvent, merge, BehaviorSubject, Observable } from 'rxjs'
 import { delay, filter, map, scan } from 'rxjs/operators'
-import { RangeLimit } from '../../../../../constants/enums/range-limit'
-import { HeartbeatComponent } from '../../../../heartbeat/heartbeat.component'
-import { Heartbeat } from '../../../../heartbeat/heartbeat.decorator'
 
 @Component({
     selector: 'mte-range-slider',

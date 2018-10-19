@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ModuleWithProviders, NgModule } from '@angular/core'
 import { MteHttpRequestInterceptor } from './http-request.interceptor'
-import { MteHttpResponseInterceptor } from './http-response.interceptor'
+// import { MteHttpResponseInterceptor } from './http-response.interceptor'
 import { MteHttpService } from './http.service'
 
 @NgModule({
@@ -23,11 +23,11 @@ export class MteHttpModule {
                     useClass: MteHttpRequestInterceptor,
                     multi: true,
                 },
-                {
-                    provide: HTTP_INTERCEPTORS,
-                    useClass: MteHttpResponseInterceptor,
-                    multi: true,
-                },
+                // {
+                //     provide: HTTP_INTERCEPTORS,
+                //     useClass: MteHttpResponseInterceptor,
+                //     multi: true,
+                // },
             ],
         }
     }
