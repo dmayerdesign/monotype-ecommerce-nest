@@ -10,7 +10,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "./dist/browser",
             "index": "src/ui/index.html",
             "main": "src/ui/main.ts",
             "tsConfig": "src/ui/tsconfig.app.json",
@@ -23,6 +23,11 @@
               },
               {
                 "glob": "favicon.ico",
+                "input": "src/ui",
+                "output": "/"
+              },
+              {
+                "glob": "loader.css",
                 "input": "src/ui",
                 "output": "/"
               }
@@ -88,6 +93,11 @@
               },
               {
                 "glob": "favicon.ico",
+                "input": "src/ui",
+                "output": "/"
+              },
+              {
+                "glob": "loader.css",
                 "input": "src/ui",
                 "output": "/"
               }

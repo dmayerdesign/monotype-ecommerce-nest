@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { environment } from '../../../../environments/environment'
 
 @Injectable()
 export class SpeakersService {
@@ -9,6 +8,6 @@ export class SpeakersService {
   ) {}
 
   public getSpeakers() {
-    return this.http.get<any[]>(`${environment.baseUrl}/api/speakers`)
+    return this.http.get<any[]>(`/api/speakers`)
   }
 }

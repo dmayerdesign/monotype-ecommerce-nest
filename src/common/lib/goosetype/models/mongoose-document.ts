@@ -2,6 +2,10 @@ import { DocumentToObjectOptions, ModelPopulateOptions, ModelUpdateOptions, Nati
 import 'reflect-metadata'
 import { MongooseModel } from './mongoose-model'
 
+export function getModel(documentType: typeof MongooseDocument): MongooseModel<any> {
+    return (documentType as MongooseDocumentConstructor).__model
+}
+
 // Base classes
 
 export class MongooseDocumentConstructor {
@@ -31,9 +35,6 @@ export class MongooseDocument {
             return this
         }
     }
-    // public static getModel?(): MongooseModel<any> {
-    //     return (this.constructor as MongooseDocumentConstructor).__model
-    // }
 
     /** Checks if a path is set to its default. */
     public $isDefault?(path?: string): boolean

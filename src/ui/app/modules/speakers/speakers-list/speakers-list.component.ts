@@ -7,6 +7,7 @@ import { SpeakersService } from './speakers.service'
   template: `
     <h3>Speakers</h3>
     <ul>
+      {{ someDate | date }}
       <li *ngFor="let speaker of speakers | async">
         <img [src]="speaker.image"> <span>{{ speaker.name }} - {{ speaker.talk }}</span>
       </li>
@@ -29,6 +30,7 @@ import { SpeakersService } from './speakers.service'
   `]
 })
 export class SpeakersListComponent implements OnInit {
+  public someDate = new Date()
 
   public speakers: Observable<any[]>
 
