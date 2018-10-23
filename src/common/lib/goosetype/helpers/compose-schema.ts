@@ -1,7 +1,7 @@
 import { camelCase } from 'lodash'
 import * as mongoose from 'mongoose'
 import { modelBuilder } from '../goosetype-model-builder'
-import { MongooseDocument, MongooseDocumentConstructor } from '../models/mongoose-document'
+import { MongooseDocument } from '../models/mongoose-document'
 
 export function composeSchema<T>(target: MongooseDocument, schemaOptions?: mongoose.SchemaOptions): mongoose.Schema {
     const schemaDefinition = modelBuilder.schemaDefinitions[camelCase(target.constructor.name)]
@@ -42,8 +42,6 @@ export function composeSchema<T>(target: MongooseDocument, schemaOptions?: mongo
             schema.plugin(plugin[0] as (schema: mongoose.Schema, options?: Object) => void, plugin[1] as Object)
         })
     }
-
-    (target.constructor as MongooseDocumentConstructor).__schema = schema
 
     return schema
 }

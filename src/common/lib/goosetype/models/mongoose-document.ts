@@ -1,17 +1,9 @@
 import { DocumentToObjectOptions, ModelPopulateOptions, ModelUpdateOptions, NativeError, Query, SaveOptions, Schema, ValidationError } from 'mongoose'
 import 'reflect-metadata'
-import { MongooseModel } from './mongoose-model'
-
-export function getModel(documentType: typeof MongooseDocument): MongooseModel<any> {
-    return (documentType as MongooseDocumentConstructor).__model
-}
+import { GoosetypeError } from '../goosetype-error'
+import { getModel } from '../helpers/get-model'
 
 // Base classes
-
-export class MongooseDocumentConstructor {
-    public __model?: MongooseModel<any>
-    public __schema?: Schema
-}
 
 export class MongooseDocument {
     public _doc?: this
@@ -29,10 +21,11 @@ export class MongooseDocument {
 
     // Goosetype.
     constructor(doc: any = {}) {
-        if ((this.constructor as MongooseDocumentConstructor).__model) {
-            return new (this.constructor as MongooseDocumentConstructor).__model(doc)
+        const model = getModel(this.constructor as any)
+        if (model) {
+            return new model(doc)
         } else {
-            return this
+            throw new GoosetypeError('No model was found matching ' + this.constructor.name)
         }
     }
 

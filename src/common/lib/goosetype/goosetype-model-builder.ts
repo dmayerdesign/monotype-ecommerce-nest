@@ -1,6 +1,7 @@
 import { camelCase } from 'lodash'
-import { Schema, SchemaDefinition, SchemaOptions, SchemaTypeOpts } from 'mongoose'
-import { PropTypeArgs } from './models/mongoose-model'
+import { Model, Schema, SchemaDefinition, SchemaOptions, SchemaTypeOpts } from 'mongoose'
+import { MongooseDocument } from './models/mongoose-document'
+import { MongooseModel, PropTypeArgs } from './models/mongoose-model'
 
 // Errors.
 
@@ -14,6 +15,7 @@ let modelBuilder: ModelBuilder // Create a singleton.
 export class ModelBuilder {
     public schemaDefinitions: { [key: string]: SchemaDefinition } = {}
     public schemas: { [key: string]: Schema } = {}
+    public models = new Map<typeof MongooseDocument | Function, MongooseModel<any>>()
     public preMiddleware: any = {}
     public postMiddleware: any = {}
     public plugins: any = {}
